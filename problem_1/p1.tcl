@@ -7,7 +7,7 @@ set val(ll) LL;
 set val(ant) Antenna/OmniAntenna;
 set val(ifqlen) 50;
 set val(rp) AODV;
-set val(nn) 150;
+set val(nn) 100;
 set val(x) 4000;
 set val(y) 4000;
 set val(stop) 150;
@@ -53,16 +53,43 @@ $ns node-config -adhocRouting $val(rp) \
 	-transitionPower 0.4 \
 	-transitionTime 0.1
 
-for {set i 0} {$i < $val(nn)} {incr i} {
-	set node_($i) [$ns node]
-	$node_($i) set size_ 50
-	$node_($i) set X_ [ expr 10+round(rand()*3900) ]
-	$node_($i) set Y_ [ expr 10+round(rand()*3000) ]
-	$node_($i) set Z_ 0.0
+
+# Create a list of 100 X and Y positions
+set positions {
+	{2233  2791}  {933  1067}  {3070  1057}  {2144  2324}  {2044  2008}  {1659  2321}  {3342  3508}  {1472  1432}  {3850  2048}  {3433  2403} 
+	{1354  2597}  {2523  275}  {2972  1269}  {2991  3059}  {2130  1193}  {3933  3123}  {3742  2729}  {2521  1349}  {711  2164}  {901  3828} 
+	{1346  788}  {1230  2275}  {2262  1685}  {3095  3725}  {1465  1735}  {3085  2005}  {2995  3505}  {1853  2044}  {3274  2984}  {1142  2501} 
+	{2547  3394}  {1342  1565}  {3225  3985}  {3475  1945}  {3775  2905}  {1097  841}  {1828  360}  {1886  1059}  {2396  372}  {2783  3057} 
+	{3936  999}  {2560  1121}  {1022  3299}  {2864  726}  {2224  1004}  {1808  2454}  {3843  1953}  {3271  1963}  {1760  1761}  {2522  3122} 
+	{1128  2932}  {2210  3523}  {2693  2662}  {1640  2033}  {957  908}  {3034  3994}  {1779  2968}  {1864  1797}  {1591  3528}  {3710  1227} 
+	{2788  211}  {3124  3383}  {3150  310}  {3185  2735}  {1923  1965}  {339  2319}  {3702  2158}  {2652  3627}  {1302  557}  {2471  2959} 
+	{3789  1365}  {3645  1065}  {1645  3435}  {1978  3625}  {2669  2113}  {3208  366}  {694  1463}  {2842  1070}  {2695  3299}  {3742  1710} 
+	{1668  1019}  {3652  190}  {1138  2440}  {237  2296}  {3356  1676}  {1366  3686}  {3376  2393}  {2092  2656}  {1196  2433}  {2302  1125} 
+	{2942  3058}  {3793  2153}  {977  1418}  {1231  2453}  {1880  1048}  {1959  2729}  {1892  3591}  {3572  1171}  {1834  1834}  {3870  2329}
+	}
+
+# Create 100 nodes with the X and Y positions
+for {set i 0} {$i < 100} {incr i} {
+    set node_name "node_($i)"
+    set node_pos [lindex $positions $i]
+    set node_x [expr [lindex $node_pos 0]]
+    set node_y [expr [lindex $node_pos 1]]
+	puts $node_x
+	puts $node_y
+	puts $node_pos
+    set $node_name [$ns node]
+	puts $node_name
+    $node_name set X_ $node_x
+    $node_name set Y_ $node_y
+	$node_name set Z_ 0.0
+
+	 lappend xListHead $node_name
 }
 
+
+
 for {set i 0} {$i < $val(nn)} {incr i} {
-	$ns at [ expr 0.2+round(rand()) ] "$node_($i) setdest [ expr 10+round(rand()*480) ] [expr 10+round(rand()*380) ] [expr 60+round(rand()*30) ]"
+	$ns at [ expr 0.01+round(rand()) ] "$node_($i) setdest [ expr 10+round(rand()*2000) ] [expr 10+round(rand()*2000) ] [expr 60+round(rand()*30) ]"
 }
 
 set udp [new Agent/UDP]
