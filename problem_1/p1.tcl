@@ -72,16 +72,16 @@ set positions {
 for {set i 0} {$i < 100} {incr i} {
     set node_name "node_($i)"
     set node_pos [lindex $positions $i]
-    set node_x [expr [lindex $node_pos 0]]
-    set node_y [expr [lindex $node_pos 1]]
-	puts $node_x
-	puts $node_y
+    set n_x [expr [lindex $node_pos 0]]
+    set n_y [expr [lindex $node_pos 1]]
+	puts $n_x
+	puts $n_y
 	puts $node_pos
     set $node_name [$ns node]
 	puts $node_name
-    $node_name set X_ $node_x
-    $node_name set Y_ $node_y
-	$node_name set Z_ 0.0
+    set ${node_name}_X_ $n_x
+    set ${node_name}_Y_ $n_y
+    set ${node_name}_Z_ 0.0
 
 	 lappend xListHead $node_name
 }
