@@ -475,7 +475,7 @@ $ns color 0 Red
 
 
 set udp [new Agent/UDP]
-$ns attach-agent $n_(63) $udp
+$ns attach-agent $n_(76) $udp
 set null [new Agent/Null]
 $ns attach-agent $n_(41) $null
 set cbr [new Application/Traffic/CBR]
