@@ -46,12 +46,15 @@ $ns node-config -adhocRouting $val(rp) \
 	-movementTrace ON \
 	-energyModel $val(energymodel) \
 	-initialEnergy $val(initialenergy) \
-	-rxPower 0.04 \
+	-rxPower 1.0 \
 	-txPower 1.0 \
 	-idlePower 0.6 \
 	-sleepPower 0.1 \
-	-transitionPower 0.04 \
+	-transitionPower 0.4 \
 	-transitionTime 0.1
+
+set packetSize 512
+set packetColor red
 
 set n_(0) [$ns node]
 $n_(0) set X_ 3160
@@ -481,6 +484,8 @@ $cbr set packetSize_ 512
 $cbr set interval_ 0.2
 $cbr set rate_ 1mb
 $cbr set maxpkts_ 10000
+$cbr set packetSize_ $packetSize
+$cbr set packetColor_ $packetColor
 $ns connect $udp $null
 $ns at 0.1 "$cbr start"
 
