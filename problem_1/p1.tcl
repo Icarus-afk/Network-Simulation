@@ -12,8 +12,6 @@ set val(x) 4000;
 set val(y) 4000;
 set val(stop) 150;
 
-set val(energymodel) EnergyModel;
-set val(initialenergy) 500;
 
 set ns [new Simulator]
 
@@ -44,14 +42,6 @@ $ns node-config -adhocRouting $val(rp) \
 	-routerTrace ON \
 	-macTrace OFF \
 	-movementTrace ON \
-	-energyModel $val(energymodel) \
-	-initialEnergy $val(initialenergy) \
-	-rxPower 1.0 \
-	-txPower 1.0 \
-	-idlePower 0.6 \
-	-sleepPower 0.1 \
-	-transitionPower 0.4 \
-	-transitionTime 0.1
 
 set packetSize 512
 set packetColor red
@@ -103,7 +93,7 @@ $n_(10) set Y_ 1811
 $n_(10) set Z_ 0.0
 set n_(11) [$ns node]
 $n_(11) set X_ 576
-$n_(11) set Y_ 3189
+$n_(11) set Y_ 3305
 $n_(11) set Z_ 0.0
 set n_(12) [$ns node]
 $n_(12) set X_ 2054
@@ -413,8 +403,8 @@ $n_(86) set X_ 658
 $n_(86) set Y_ 402
 $n_(86) set Z_ 0.0
 set n_(87) [$ns node]
-$n_(87) set X_ 1084
-$n_(87) set Y_ 2969
+$n_(87) set X_ 700
+$n_(87) set Y_ 3169
 $n_(87) set Z_ 0.0
 set n_(88) [$ns node]
 $n_(88) set X_ 906
@@ -471,13 +461,19 @@ for {set i 0} {$i < $val(nn)} {incr i} {
 	$ns at [ expr 0.01+round(rand()) ] "$n_($i) setdest [ expr 10+round(rand()*3000) ] [expr 10+round(rand()*3000) ] [expr 60+round(rand()*30) ]"
 }
 
+# Set the transmission range for all nodes
+for {set i 0} {$i < $val(nn)} {incr i} {
+  $ns at 0.0 "$n_($i) set txrange_ 500"
+}
+
+
 $ns color 0 Red
 
 
 set udp [new Agent/UDP]
-$ns attach-agent $n_(76) $udp
+$ns attach-agent $n_(45) $udp
 set null [new Agent/Null]
-$ns attach-agent $n_(41) $null
+$ns attach-agent $n_(87) $null
 set cbr [new Application/Traffic/CBR]
 $cbr attach-agent $udp
 $cbr set packetSize_ 512
