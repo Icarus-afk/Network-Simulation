@@ -1,0 +1,199 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$ns at 0.01 "$n_(0) setdest 3178 71 0" 
+$ns at 0.01 "$n_(1) setdest 1529 3386 0" 
+$ns at 0.01 "$n_(2) setdest 1027 3865 0" 
+$ns at 0.01 "$n_(3) setdest 1437 2912 0" 
+$ns at 0.01 "$n_(4) setdest 3653 2851 0" 
+$ns at 0.01 "$n_(5) setdest 2354 1363 0" 
+$ns at 0.01 "$n_(6) setdest 1554 3771 0" 
+$ns at 0.01 "$n_(7) setdest 1338 2076 0" 
+$ns at 0.01 "$n_(8) setdest 718 3906 0" 
+$ns at 0.01 "$n_(9) setdest 2708 712 0" 
+$ns at 0.01 "$n_(10) setdest 2328 963 0" 
+$ns at 0.01 "$n_(11) setdest 2399 2804 0" 
+$ns at 0.01 "$n_(12) setdest 624 3681 0" 
+$ns at 0.01 "$n_(13) setdest 651 3575 0" 
+$ns at 0.01 "$n_(14) setdest 2265 2375 0" 
+$ns at 0.01 "$n_(15) setdest 2876 2841 0" 
+$ns at 0.01 "$n_(16) setdest 124 2865 0" 
+$ns at 0.01 "$n_(17) setdest 950 3256 0" 
+$ns at 0.01 "$n_(18) setdest 2104 3273 0" 
+$ns at 0.01 "$n_(19) setdest 1737 1000 0" 
+$ns at 0.01 "$n_(20) setdest 1528 2701 0" 
+$ns at 0.01 "$n_(21) setdest 1726 683 0" 
+$ns at 0.01 "$n_(22) setdest 3077 3680 0" 
+$ns at 0.01 "$n_(23) setdest 690 2447 0" 
+$ns at 0.01 "$n_(24) setdest 687 3333 0" 
+$ns at 0.01 "$n_(25) setdest 457 2756 0" 
+$ns at 0.01 "$n_(26) setdest 1351 1051 0" 
+$ns at 0.01 "$n_(27) setdest 3692 2374 0" 
+$ns at 0.01 "$n_(28) setdest 603 451 0" 
+$ns at 0.01 "$n_(29) setdest 3326 2130 0" 
+$ns at 0.01 "$n_(30) setdest 3457 284 0" 
+$ns at 0.01 "$n_(31) setdest 1151 757 0" 
+$ns at 0.01 "$n_(32) setdest 2028 3427 0" 
+$ns at 0.01 "$n_(33) setdest 2940 3167 0" 
+$ns at 0.01 "$n_(34) setdest 2379 3150 0" 
+$ns at 0.01 "$n_(35) setdest 3525 2997 0" 
+$ns at 0.01 "$n_(36) setdest 2329 2556 0" 
+$ns at 0.01 "$n_(37) setdest 2515 1434 0" 
+$ns at 0.01 "$n_(38) setdest 2894 526 0" 
+$ns at 0.01 "$n_(39) setdest 3080 3997 0" 
+$ns at 0.01 "$n_(40) setdest 3594 79 0" 
+$ns at 0.01 "$n_(41) setdest 673 3415 0" 
+$ns at 0.01 "$n_(42) setdest 1474 1645 0" 
+$ns at 0.01 "$n_(43) setdest 2500 2028 0" 
+$ns at 0.01 "$n_(44) setdest 1940 1862 0" 
+$ns at 0.01 "$n_(45) setdest 19 117 0" 
+$ns at 0.01 "$n_(46) setdest 260 3161 0" 
+$ns at 0.01 "$n_(47) setdest 3032 3129 0" 
+$ns at 0.01 "$n_(48) setdest 3619 571 0" 
+$ns at 0.01 "$n_(49) setdest 3541 2853 0" 
+$ns at 0.01 "$n_(50) setdest 1623 3328 0" 
+$ns at 0.01 "$n_(51) setdest 86 361 0" 
+$ns at 0.01 "$n_(52) setdest 3754 1172 0" 
+$ns at 0.01 "$n_(53) setdest 3197 1378 0" 
+$ns at 0.01 "$n_(54) setdest 516 201 0" 
+$ns at 0.01 "$n_(55) setdest 2547 3256 0" 
+$ns at 0.01 "$n_(56) setdest 842 1268 0" 
+$ns at 0.01 "$n_(57) setdest 2093 1198 0" 
+$ns at 0.01 "$n_(58) setdest 3763 1776 0" 
+$ns at 0.01 "$n_(59) setdest 3344 3963 0" 
+$ns at 0.01 "$n_(60) setdest 2126 2165 0" 
+$ns at 0.01 "$n_(61) setdest 3333 3914 0" 
+$ns at 0.01 "$n_(62) setdest 525 63 0" 
+$ns at 0.01 "$n_(63) setdest 2847 3555 0" 
+$ns at 0.01 "$n_(64) setdest 3435 2109 0" 
+$ns at 0.01 "$n_(65) setdest 548 2678 0" 
+$ns at 0.01 "$n_(66) setdest 1131 52 0" 
+$ns at 0.01 "$n_(67) setdest 821 1321 0" 
+$ns at 0.01 "$n_(68) setdest 2609 2736 0" 
+$ns at 0.01 "$n_(69) setdest 3291 2560 0" 
+$ns at 0.01 "$n_(70) setdest 3209 2742 0" 
+$ns at 0.01 "$n_(71) setdest 1499 3248 0" 
+$ns at 0.01 "$n_(72) setdest 3693 2357 0" 
+$ns at 0.01 "$n_(73) setdest 904 2216 0" 
+$ns at 0.01 "$n_(74) setdest 725 95 0" 
+$ns at 0.01 "$n_(75) setdest 2516 43 0" 
+$ns at 0.01 "$n_(76) setdest 3276 1215 0" 
+$ns at 0.01 "$n_(77) setdest 2313 2067 0" 
+$ns at 0.01 "$n_(78) setdest 1773 2628 0" 
+$ns at 0.01 "$n_(79) setdest 1115 2329 0" 
+$ns at 0.01 "$n_(80) setdest 3394 1302 0" 
+$ns at 0.01 "$n_(81) setdest 1885 3586 0" 
+$ns at 0.01 "$n_(82) setdest 2954 1659 0" 
+$ns at 0.01 "$n_(83) setdest 196 2152 0" 
+$ns at 0.01 "$n_(84) setdest 2377 1394 0" 
+$ns at 0.01 "$n_(85) setdest 1503 3466 0" 
+$ns at 0.01 "$n_(86) setdest 966 2786 0" 
+$ns at 0.01 "$n_(87) setdest 223 3716 0" 
+$ns at 0.01 "$n_(88) setdest 49 3825 0" 
+$ns at 0.01 "$n_(89) setdest 719 394 0" 
+$ns at 0.01 "$n_(90) setdest 3072 3812 0" 
+$ns at 0.01 "$n_(91) setdest 2093 1550 0" 
+$ns at 0.01 "$n_(92) setdest 2253 3398 0" 
+$ns at 0.01 "$n_(93) setdest 413 834 0" 
+$ns at 0.01 "$n_(94) setdest 2476 3769 0" 
+$ns at 0.01 "$n_(95) setdest 3226 1246 0" 
+$ns at 0.01 "$n_(96) setdest 159 1655 0" 
+$ns at 0.01 "$n_(97) setdest 3496 1363 0" 
+$ns at 0.01 "$n_(98) setdest 3354 3942 0"
+$ns at 0.01 "$n_(99) setdest 3456 1363 0"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

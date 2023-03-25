@@ -5,7 +5,7 @@ set val(mac) Mac/802_11;
 set val(ifq) Queue/DropTail/PriQueue;
 set val(ll) LL;
 set val(ant) Antenna/OmniAntenna;
-set val(ifqlen) 50;
+set val(ifqlen) 500;
 set val(rp) AODV;
 set val(nn) 100;
 set val(x) 4000;
@@ -46,115 +46,94 @@ $ns node-config -adhocRouting $val(rp) \
 	-movementTrace ON \
 	-energyModel $val(energymodel) \
 	-initialEnergy $val(initialenergy) \
-	-rxPower 0.4 \
+	-rxPower 0.04 \
 	-txPower 1.0 \
 	-idlePower 0.6 \
 	-sleepPower 0.1 \
-	-transitionPower 0.4 \
+	-transitionPower 0.04 \
 	-transitionTime 0.1
 
 set n_(0) [$ns node]
 $n_(0) set X_ 3160
 $n_(0) set Y_ 2076
 $n_(0) set Z_ 0.0
-
 set n_(1) [$ns node]
 $n_(1) set X_ 2913
 $n_(1) set Y_ 66
 $n_(1) set Z_ 0.0
-
 set n_(2) [$ns node]
 $n_(2) set X_ 870
 $n_(2) set Y_ 231
 $n_(2) set Z_ 0.0
-
 set n_(3) [$ns node]
 $n_(3) set X_ 2679
 $n_(3) set Y_ 3902
 $n_(3) set Z_ 0.0
-
 set n_(4) [$ns node]
 $n_(4) set X_ 637
 $n_(4) set Y_ 2853
 $n_(4) set Z_ 0.0
-
 set n_(5) [$ns node]
 $n_(5) set X_ 2688
 $n_(5) set Y_ 3510
 $n_(5) set Z_ 0.0
-
 set n_(6) [$ns node]
 $n_(6) set X_ 438
 $n_(6) set Y_ 728
 $n_(6) set Z_ 0.0
-
 set n_(7) [$ns node]
 $n_(7) set X_ 1118
 $n_(7) set Y_ 462
 $n_(7) set Z_ 0.0
-
 set n_(8) [$ns node]
 $n_(8) set X_ 160
 $n_(8) set Y_ 129
 $n_(8) set Z_ 0.0
-
 set n_(9) [$ns node]
 $n_(9) set X_ 282
 $n_(9) set Y_ 3311
 $n_(9) set Z_ 0.0
 
-
 set n_(10) [$ns node]
 $n_(10) set X_ 3473
 $n_(10) set Y_ 1811
 $n_(10) set Z_ 0.0
-
 set n_(11) [$ns node]
 $n_(11) set X_ 576
 $n_(11) set Y_ 3189
 $n_(11) set Z_ 0.0
-
 set n_(12) [$ns node]
 $n_(12) set X_ 2054
 $n_(12) set Y_ 2914
 $n_(12) set Z_ 0.0
-
 set n_(13) [$ns node]
 $n_(13) set X_ 405
 $n_(13) set Y_ 2273
 $n_(13) set Z_ 0.0
-
 set n_(14) [$ns node]
 $n_(14) set X_ 2255
 $n_(14) set Y_ 3621
 $n_(14) set Z_ 0.0
-
 set n_(15) [$ns node]
 $n_(15) set X_ 2044
 $n_(15) set Y_ 2617
 $n_(15) set Z_ 0.0
-
 set n_(16) [$ns node]
 $n_(16) set X_ 2644
 $n_(16) set Y_ 3026
 $n_(16) set Z_ 0.0
-
 set n_(17) [$ns node]
 $n_(17) set X_ 2304
 $n_(17) set Y_ 3675
 $n_(17) set Z_ 0.0
-
 set n_(18) [$ns node]
 $n_(18) set X_ 1873
 $n_(18) set Y_ 1697
 $n_(18) set Z_ 0.0
-
 set n_(19) [$ns node]
 $n_(19) set X_ 3584
 $n_(19) set Y_ 1149
 $n_(19) set Z_ 0.0
-
-
 set n_(20) [$ns node]
 $n_(20) set X_ 1822
 $n_(20) set Y_ 3386
@@ -485,15 +464,17 @@ $n_(99) set Y_ 2278
 $n_(99) set Z_ 0.0
 
 
-
 for {set i 0} {$i < $val(nn)} {incr i} {
-	$ns at [ expr 0.01+round(rand()) ] "$n_($i) setdest [ expr 10+round(rand()*2000) ] [expr 10+round(rand()*2000) ] [expr 60+round(rand()*30) ]"
+	$ns at [ expr 0.01+round(rand()) ] "$n_($i) setdest [ expr 10+round(rand()*3000) ] [expr 10+round(rand()*3000) ] [expr 60+round(rand()*30) ]"
 }
 
+$ns color 0 Red
+
+
 set udp [new Agent/UDP]
-$ns attach-agent $n_(61) $udp
+$ns attach-agent $n_(63) $udp
 set null [new Agent/Null]
-$ns attach-agent $n_(87) $null
+$ns attach-agent $n_(41) $null
 set cbr [new Application/Traffic/CBR]
 $cbr attach-agent $udp
 $cbr set packetSize_ 512
@@ -504,7 +485,7 @@ $ns connect $udp $null
 $ns at 0.1 "$cbr start"
 
 for {set i 0} {$i < $val(nn)} {incr i} {
-        $ns initial_node_pos $n_($i) 30
+        $ns initial_node_pos $n_($i) 80
 }
 
 for {set i 0} {$i < $val(nn)} {incr i} {
@@ -519,7 +500,7 @@ proc finish {} {
         $ns flush-trace
         close $tf
         close $nf
-        exec nam ns_aodv.nam &
+        exec nam p1.nam &
         exit 0
 }
 
