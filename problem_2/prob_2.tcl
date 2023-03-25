@@ -472,9 +472,9 @@ for {set i 0} {$i < $val(nn)} {incr i} {
 }
 
 set udp [new Agent/UDP]
-$ns attach-agent $n_(61) $udp
+$ns attach-agent $n_(15) $udp
 set null [new Agent/Null]
-$ns attach-agent $n_(87) $null
+$ns attach-agent $n_(58) $null
 set cbr [new Application/Traffic/CBR]
 $cbr attach-agent $udp
 $cbr set packetSize_ 512
