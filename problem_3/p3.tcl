@@ -5,15 +5,13 @@ set val(mac) Mac/802_11;
 set val(ifq) Queue/DropTail/PriQueue;
 set val(ll) LL;
 set val(ant) Antenna/OmniAntenna;
-set val(ifqlen) 50;
+set val(ifqlen) 500;
 set val(rp) AODV;
 set val(nn) 300;
 set val(x) 4000;
 set val(y) 4000;
 set val(stop) 150;
 
-set val(energymodel) EnergyModel;
-set val(initialenergy) 500;
 
 set ns [new Simulator]
 
@@ -44,14 +42,9 @@ $ns node-config -adhocRouting $val(rp) \
 	-routerTrace ON \
 	-macTrace OFF \
 	-movementTrace ON \
-	-energyModel $val(energymodel) \
-	-initialEnergy $val(initialenergy) \
-	-rxPower 0.4 \
-	-txPower 1.0 \
-	-idlePower 0.6 \
-	-sleepPower 0.1 \
-	-transitionPower 0.4 \
-	-transitionTime 0.1
+
+set packetSize 512
+set packetColor red
 
 set n_(0) [$ns node]
 $n_(0) set X_ 1377
@@ -1293,6 +1286,12 @@ for {set i 0} {$i < $val(nn)} {incr i} {
 	$ns at [ expr 0.2+round(rand()) ] "$n_($i) setdest [ expr 10+round(rand()*480) ] [expr 10+round(rand()*380) ] [expr 60+round(rand()*30) ]"
 }
 
+for {set i 0} {$i < $val(nn)} {incr i} {
+  $ns at 0.0 "$n_($i) set txrange_ 500"
+}
+
+$ns color 0 Red
+
 set udp [new Agent/UDP]
 $ns attach-agent $n_(15) $udp
 set null [new Agent/Null]
@@ -1303,6 +1302,8 @@ $cbr set packetSize_ 512
 $cbr set interval_ 0.2
 $cbr set rate_ 1mb
 $cbr set maxpkts_ 10000
+$cbr set packetSize_ $packetSize
+$cbr set packetColor_ $packetColor
 $ns connect $udp $null
 $ns at 0.4 "$cbr start"
 
