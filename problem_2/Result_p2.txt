@@ -1,0 +1,2 @@
+  Send   Receive    Drop     O/H      [kbps]     PDR     NRL     EED   startTime    stopTime    Date   /   Time         Filename
+   660       110       0       9     168.575   16.67    0.08    0.95        0.40        3.07    2023/03/26 16:51:03             p2 
