@@ -46,6 +46,12 @@ $ns node-config -adhocRouting $val(rp) \
 set packetSize 512
 set packetColor red
 
+
+set dist(500m) 2.2829e-11 
+Phy/WirelessPhy set CSThresh_ $dist(500m)
+Phy/WirelessPhy set RXThresh_ $dist(500m)	
+Phy/WirelessPhy set Pt_ 0.2818
+
 set n_(0) [$ns node]
 $n_(0) set X_ 1377
 $n_(0) set Y_ 126
