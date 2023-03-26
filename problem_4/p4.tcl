@@ -43,8 +43,13 @@ $ns node-config -adhocRouting $val(rp) \
 	-macTrace OFF \
 	-movementTrace ON \
 
+set dist(250m) 3.6526e-10
+Phy/WirelessPhy set CSThresh_ $dist(250m)
+Phy/WirelessPhy set RXThresh_ $dist(250m)	
+Phy/WirelessPhy set Pt_ 0.2818
+
 set packetSize 512
-set packetColor red
+set packetColor pink
 
 set n_(0) [$ns node]
 $n_(0) set X_ 261
@@ -130,7 +135,7 @@ $n_(19) set Z_ 0.0
 
 set n_(20) [$ns node]
 $n_(20) set X_ 1822
-$n_(20) set Y_ 3386
+$n_(20) set Y_ 516
 $n_(20) set Z_ 0.0
 set n_(21) [$ns node]
 $n_(21) set X_ 348
@@ -1281,12 +1286,6 @@ for {set i 0} {$i < $val(nn)} {incr i} {
 	$ns at [ expr 0.01+round(rand()) ] "$n_($i) setdest [ expr 10+round(rand()*1000) ] [expr 10+round(rand()*1000) ] [expr 60+round(rand()*30) ]"
 }
 
-# Set the transmission range for all nodes
-for {set i 0} {$i < $val(nn)} {incr i} {
-  $ns at 0.0 "$n_($i) set txrange_ 500"
-}
-
-
 $ns color 0 Red
 
 
@@ -1297,7 +1296,7 @@ $ns attach-agent $n_(256) $null
 set cbr [new Application/Traffic/CBR]
 $cbr attach-agent $udp
 $cbr set packetSize_ 512
-$cbr set interval_ 0.2
+$cbr set interval_ 0.3
 $cbr set rate_ 1mb
 $cbr set maxpkts_ 10000
 $cbr set packetSize_ $packetSize
@@ -1321,7 +1320,7 @@ proc finish {} {
         $ns flush-trace
         close $tf
         close $nf
-        exec nam p1.nam &
+        exec nam p4.nam &
         exit 0
 }
 
