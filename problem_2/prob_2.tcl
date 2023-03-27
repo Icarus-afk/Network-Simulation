@@ -46,9 +46,9 @@ $ns node-config -adhocRouting $val(rp) \
 set packetSize 512
 set packetColor red
 
-set dist(500m) 2.2829e-11 
-Phy/WirelessPhy set CSThresh_ $dist(500m)
-Phy/WirelessPhy set RXThresh_ $dist(500m)	
+set dist(250m) 3.6526e-10
+Phy/WirelessPhy set CSThresh_ $dist(250m)
+Phy/WirelessPhy set RXThresh_ $dist(250m)	
 Phy/WirelessPhy set Pt_ 0.2818
 
 set n_(0) [$ns node]
@@ -484,9 +484,9 @@ for {set i 0} {$i < $val(nn)} {incr i} {
 $ns color 0 Red
 
 set udp [new Agent/UDP]
-$ns attach-agent $n_(20) $udp
+$ns attach-agent $n_(6) $udp
 set null [new Agent/Null]
-$ns attach-agent $n_(27) $null
+$ns attach-agent $n_(92) $null
 set cbr [new Application/Traffic/CBR]
 $cbr attach-agent $udp
 $cbr set packetSize_ 512
