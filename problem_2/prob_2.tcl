@@ -43,6 +43,14 @@ $ns node-config -adhocRouting $val(rp) \
 	-macTrace OFF \
 	-movementTrace ON \
 
+set packetSize 512
+set packetColor red
+
+set dist(500m) 2.2829e-11 
+Phy/WirelessPhy set CSThresh_ $dist(500m)
+Phy/WirelessPhy set RXThresh_ $dist(500m)	
+Phy/WirelessPhy set Pt_ 0.2818
+
 set n_(0) [$ns node]
 $n_(0) set X_ 1377
 $n_(0) set Y_ 126
@@ -457,8 +465,16 @@ $n_(99) set X_ 2596
 $n_(99) set Y_ 469
 $n_(99) set Z_ 0.0
 
-for {set i 0} {$i < $val(nn)} {incr i} {
-	$ns at [ expr 0.2+round(rand()) ] "$n_($i) setdest [ expr 10+round(rand()*480) ] [expr 10+round(rand()*380) ] [expr 60+round(rand()*30) ]"
+set positions {
+	{3435 1269} {1301 3501} {1435 2979} {2245 593} {2456 1894} {3185 1270} {832 232} {430 831} {2114 2012} {270 3415} {1519 515} {3325 571} {3031 1236} {2821 3360} {3659 600} {276 312} {1029 2888} {2125 3824} {3460 1164} {917 1505} {2169 1350} {774 1244} {1904 1406} {2968 1298} {1800 2557} {1149 1570} {2863 896} {2307 2621} {173 2862} {160 2601} {1464 1575} {1159 1371} {2754 3130} {1656 2662} {857 1617} {914 1387} {1109 2341} {1754 2571} {1103 319} {1372 1027} {29 3253} {833 3258} {1153 1253} {1757 1776} {3118 3006} {3112 2862} {995 2359} {158 2823} {1576 107} {537 1934} {1157 1497} {1442 1280} {2686 1105} {2767 2243} {3317 2469} {2888 2792} {1192 338} {1903 677} {1068 1146} {3013 1845} {1303 2969} {3111 871} {2623 638} {3256 2286} {1775 1364} {3508 3099} {2900 486} {2323 527} {487 2813} {3489 1537} {3787 604} {3515 355} {1792 3979} {547 2098} {1722 3870} {931 802} {3680 1282} {790 3336} {2976 2898} {3511 2501} {2536 2496} {3029 3716} {3490 1404} {2348 3130} {1259 2897} {536 3859} {3819 991} {2484 1118} {3306 2378} {1422 920} {2179 3105} {2288 1681} {861 1619} {1904 1540} {1623 2678} {891 459} {3006 3041} {3758 633} {3428 2555} {3445 125}
+	
+	}
+
+for {set i 0} {$i < 100} {incr i} {
+	set node_pos [lindex $positions $i]
+    set n_x [expr [lindex $node_pos 0]]
+    set n_y [expr [lindex $node_pos 1]]
+	 $ns at 0.1 "$n_($i) setdest $n_x $n_y 400"
 }
 
 for {set i 0} {$i < $val(nn)} {incr i} {
@@ -468,15 +484,17 @@ for {set i 0} {$i < $val(nn)} {incr i} {
 $ns color 0 Red
 
 set udp [new Agent/UDP]
-$ns attach-agent $n_(34) $udp
+$ns attach-agent $n_(20) $udp
 set null [new Agent/Null]
-$ns attach-agent $n_(43) $null
+$ns attach-agent $n_(27) $null
 set cbr [new Application/Traffic/CBR]
 $cbr attach-agent $udp
 $cbr set packetSize_ 512
 $cbr set interval_ 0.2
 $cbr set rate_ 1mb
 $cbr set maxpkts_ 10000
+$cbr set packetSize_ $packetSize
+$cbr set packetColor_ $packetColor
 $ns connect $udp $null
 $ns at 0.4 "$cbr start"
 
