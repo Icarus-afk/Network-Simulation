@@ -46,6 +46,12 @@ $ns node-config -adhocRouting $val(rp) \
 set packetSize 512
 set packetColor red
 
+
+set dist(500m) 2.2829e-11 
+Phy/WirelessPhy set CSThresh_ $dist(500m)
+Phy/WirelessPhy set RXThresh_ $dist(500m)	
+Phy/WirelessPhy set Pt_ 0.2818
+
 set n_(0) [$ns node]
 $n_(0) set X_ 3160
 $n_(0) set Y_ 2076
@@ -457,10 +463,30 @@ $n_(99) set Y_ 2278
 $n_(99) set Z_ 0.0
 
 
-for {set i 0} {$i < $val(nn)} {incr i} {
-	$ns at [ expr 0.01+round(rand()) ] "$n_($i) setdest [ expr 10+round(rand()*3000) ] [expr 10+round(rand()*3000) ] [expr 60+round(rand()*30) ]"
+#}
+set positions {
+	{153 299 } {1774 271} {3172 467} {2508 1439} {3196 2822} {697 465} {536 3128} {1905 2744} {1647 483} {3961 2526}
+{3155 931} {273 329} {2426 16} {3695 1503} {2927 1466} {3816 1689} {2721 243} {1637 3744} {2033 3725} {506 2448} 
+{694 1747} {2792 182} {1791 2124} {3874 406} {3177 3625} {3017 729} {473 1341} {1199 1557} {330 3850} {2446 3984}
+{809 1345} {2365 3857} {2908 1023} {2778 687} {1656 3587} {1663 2756} {107 1861} {523 3880} {3705 2213} {724 1059}
+{3170 3988} {2540 3775} {1382 2029} {2518 1124} {2510 1165} {331 2153} {1212 216} {1019 3279} {1602 844} {394 324}
+{3657 2395} {870 3407} {1519 2345} {2981 2948} {1565 3188} {2493 3416} {1683 1402} {3438 1028} {1348 872} {1545 2696}
+{1355 995} {301 14} {221 3217} {3013 3251} {639 2432} {782 1620} {34 1970} {1533 3374} {2929 2584} {1504 2004}
+{855 677} {375 2632} {777 3075} {2121 767} {2504 1053} {2074 3699} {581 2313} {2637 950} {1011 2727} {139 1680}
+{3309 3054} {2114 1773} {889 389} {3744 512} {2674 2237} {3852 2855} {1909 1796} {1968 3109} {401 1515} {2123 2118}
+{1782 1847} {2159 2663} {2211 1050} {1166 3382} {2353 2963} {1308 433} {1516 1053} {2463 1583} {3369 3663} {15 1048}
+	}
+
+
+# Create 100 nodes with the X and Y positions
+for {set i 0} {$i < 100} {incr i} {
+    set node_pos [lindex $positions $i]
+    set n_x [expr [lindex $node_pos 0]]
+    set n_y [expr [lindex $node_pos 1]]
+	 $ns at 0.1 "$n_($i) setdest $n_x $n_y 400"
 }
 
+ 
 # Set the transmission range for all nodes
 for {set i 0} {$i < $val(nn)} {incr i} {
   $ns at 0.0 "$n_($i) set txrange_ 500"
@@ -473,7 +499,7 @@ $ns color 0 Red
 set udp [new Agent/UDP]
 $ns attach-agent $n_(45) $udp
 set null [new Agent/Null]
-$ns attach-agent $n_(87) $null
+$ns attach-agent $n_(11) $null
 set cbr [new Application/Traffic/CBR]
 $cbr attach-agent $udp
 $cbr set packetSize_ 512
