@@ -5,6 +5,6 @@ Requirements
 <h3> Run
 
 ```
-ns <filename.tcl
+ns <filename.tcl>
 nam  <filename.nam>
  ```
